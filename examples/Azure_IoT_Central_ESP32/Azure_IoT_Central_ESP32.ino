@@ -137,6 +137,12 @@ static int mqtt_client_init_function(mqtt_client_config_t* mqtt_client_config, m
   mqtt_config.user_context = NULL;
   mqtt_config.cert_pem = (const char*)ca_pem;
 
+#ifndef IOT_CONFIG_USE_X509_CERT
+  LogInfo("MQTT client using X509 Certificate authentication");
+  mqtt_config.client_cert_pem = IOT_CONFIG_DEVICE_CERTIFICATE;
+  mqtt_config.client_key_pem = IOT_CONFIG_DEVICE_PRIVATE_KEY;
+#endif
+
   LogInfo("MQTT client target uri set to '%s'", mqtt_broker_uri);
 
   mqtt_client = esp_mqtt_client_init(&mqtt_config);

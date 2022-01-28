@@ -10,6 +10,25 @@
 #define IOT_CONFIG_DEVICE_ID              "Device ID"
 #define IOT_CONFIG_DEVICE_KEY             "Device Key"
 
+// uncomment to use X509 Certificate and key instead of SAS device key 
+//#define IOT_CONFIG_USE_X509_CERT
+
+static const char IOT_CONFIG_DEVICE_CERTIFICATE[] PROGMEM = R"EOF(
+-----BEGIN CERTIFICATE-----
+
+<your certificate data>
+
+-----END CERTIFICATE-----
+)EOF";
+
+static const char IOT_CONFIG_DEVICE_PRIVATE_KEY[] PROGMEM = R"EOF(
+-----BEGIN RSA PRIVATE KEY-----
+
+<your key data>
+
+-----END RSA PRIVATE KEY-----
+)EOF";
+
 // User-agent (url-encoded) provided by the MQTT client to Azure IoT Services.
 // When developing for your own Arduino-based platform,
 // please update the suffix with the format '(ard;<platform>)' as an url-encoded string.
